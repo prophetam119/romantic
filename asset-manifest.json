@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/romantic/static/css/main.983ab96d.css",
+    "main.js": "/romantic/static/js/main.ea77f505.js",
+    "index.html": "/romantic/index.html",
+    "main.983ab96d.css.map": "/romantic/static/css/main.983ab96d.css.map",
+    "main.ea77f505.js.map": "/romantic/static/js/main.ea77f505.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.983ab96d.css",
+    "static/js/main.ea77f505.js"
+  ]
+}
