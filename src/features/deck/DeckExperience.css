@@ -1,0 +1,130 @@
+.experience {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: #08080a;
+  overflow: hidden;
+}
+
+.experience::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 110%, rgba(180, 140, 100, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 80% 10%, rgba(120, 100, 140, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 30% at 10% 20%, rgba(100, 120, 160, 0.06) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+.experience::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.experience--deck {
+  padding-top: env(safe-area-inset-top);
+}
+
+.experience__deck {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  padding-top: env(safe-area-inset-top);
+}
+
+.intro {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 2rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.intro__days {
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.intro__name {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.75rem, 13vw, 4.25rem);
+  color: #faf6f0;
+  font-weight: 400;
+  line-height: 1.05;
+  text-shadow: 0 2px 40px rgba(255, 220, 180, 0.15);
+}
+
+.intro__line {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 0.75rem;
+}
+
+.intro__tap {
+  margin-top: 3.5rem;
+  padding: 0.65rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(8px);
+  animation: introPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes introPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+.experience__header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 1rem 1.5rem 0;
+  flex-shrink: 0;
+}
+
+.experience__name {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.experience__days {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.28);
+}

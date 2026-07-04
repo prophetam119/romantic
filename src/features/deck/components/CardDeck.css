@@ -1,0 +1,122 @@
+.deck {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem calc(1.25rem + env(safe-area-inset-bottom));
+  min-height: 0;
+}
+
+.deck__progress {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 1.75rem;
+}
+
+.deck__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.deck__dot--done {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.deck__dot--active {
+  width: 22px;
+  background: rgba(255, 240, 220, 0.85);
+}
+
+.deck__stage {
+  position: relative;
+  width: min(320px, 84vw);
+  height: min(460px, 74dvh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.deck__stack-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.deck__top {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.deck__swipe {
+  cursor: grab;
+  touch-action: none;
+  will-change: transform;
+}
+
+.deck__swipe:active {
+  cursor: grabbing;
+}
+
+.deck__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.75rem;
+  margin-top: 2rem;
+}
+
+.deck__btn {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.deck__btn:hover:not(:disabled) {
+  transform: scale(1.06);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.deck__btn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.deck__btn:disabled {
+  opacity: 0.18;
+  cursor: default;
+}
+
+.deck__hint {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.32);
+  min-width: 8.5rem;
+  text-align: center;
+}
