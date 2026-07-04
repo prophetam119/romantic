@@ -10,9 +10,9 @@ import { DeckCard } from "../../../shared/types/content";
 import { PolaroidCard } from "./PolaroidCard";
 import "./CardDeck.css";
 
-const SWIPE_OFFSET = 90;
-const SWIPE_VELOCITY = 450;
-const FLY_OUT = 520;
+const SWIPE_OFFSET = 80;
+const SWIPE_VELOCITY = 400;
+const EXIT_X = 340;
 
 interface CardDeckProps {
   cards: DeckCard[];
@@ -32,20 +32,14 @@ function SwipeableCard({
   canGoPrev,
 }: SwipeableCardProps) {
   const x = useMotionValue(0);
-  const rotate = useTransform(x, [-280, 0, 280], [-14, 0, 14]);
-  const dragOpacity = useTransform(
-    x,
-    [-320, -160, 0, 160, 320],
-    [0.55, 1, 1, 1, 0.55]
-  );
+  const rotate = useTransform(x, [-220, 0, 220], [-10, 0, 10]);
 
   const flyOut = useCallback(
     (direction: 1 | -1) => {
-      animate(x, -direction * FLY_OUT, {
-        type: "spring",
-        stiffness: 180,
-        damping: 22,
-        velocity: -direction * 600,
+      animate(x, -direction * EXIT_X, {
+        type: "tween",
+        duration: 0.22,
+        ease: [0.4, 0, 0.2, 1],
         onComplete: () => onDismiss(direction),
       });
     },
@@ -54,9 +48,9 @@ function SwipeableCard({
 
   const snapBack = useCallback(() => {
     animate(x, 0, {
-      type: "spring",
-      stiffness: 420,
-      damping: 28,
+      type: "tween",
+      duration: 0.2,
+      ease: [0.25, 0.1, 0.25, 1],
     });
   }, [x]);
 
@@ -76,13 +70,12 @@ function SwipeableCard({
   return (
     <motion.div
       className="deck__swipe"
-      style={{ x, rotate, opacity: dragOpacity }}
+      style={{ x, rotate }}
       drag="x"
       dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={0.12}
+      dragElastic={0.08}
       dragMomentum={false}
       onDragEnd={onDragEnd}
-      whileTap={{ cursor: "grabbing" }}
     >
       <PolaroidCard card={card} />
     </motion.div>
@@ -91,7 +84,6 @@ function SwipeableCard({
 
 export function CardDeck({ cards }: CardDeckProps) {
   const [index, setIndex] = useState(0);
-  const [enterKey, setEnterKey] = useState(0);
 
   const isFirst = index === 0;
   const isLast = index >= cards.length - 1;
@@ -104,7 +96,6 @@ export function CardDeck({ cards }: CardDeckProps) {
         if (next < 0 || next >= cards.length) return prev;
         return next;
       });
-      setEnterKey((k) => k + 1);
     },
     [cards.length]
   );
@@ -139,45 +130,27 @@ export function CardDeck({ cards }: CardDeckProps) {
           .map((card, reverseIdx) => {
             const depth = stackCards.length - reverseIdx;
             return (
-              <motion.div
+              <div
                 key={`${card.id}-stack-${index}`}
                 className="deck__stack-card"
-                initial={false}
-                animate={{
-                  scale: 1 - depth * 0.045,
-                  y: depth * 14,
-                  rotate: depth * 2.5,
-                  opacity: 1 - depth * 0.12,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 320,
-                  damping: 28,
+                style={{
+                  transform: `scale(${1 - depth * 0.04}) translateY(${depth * 12}px) rotate(${depth * 2}deg)`,
+                  opacity: 1 - depth * 0.1,
                 }}
               >
                 <PolaroidCard card={card} variant="stack" />
-              </motion.div>
+              </div>
             );
           })}
 
-        <motion.div
-          key={`${index}-${enterKey}`}
-          className="deck__top"
-          initial={{ scale: 0.94, y: 18, opacity: 0.7 }}
-          animate={{ scale: 1, y: 0, opacity: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 300,
-            damping: 26,
-          }}
-        >
+        <div className="deck__top" key={current.id}>
           <SwipeableCard
             card={current}
             onDismiss={handleDismiss}
             canGoNext={!isLast}
             canGoPrev={!isFirst}
           />
-        </motion.div>
+        </div>
       </div>
 
       <div className="deck__footer">

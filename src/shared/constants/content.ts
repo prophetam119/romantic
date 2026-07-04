@@ -83,7 +83,7 @@ export const CONTENT: SiteContent = {
     },
     {
       id: "final",
-      caption: "Спасибо, что ты есть.",
+      caption: "Спасибо, что ты есть. Я тебя очень сильно люблю",
       note: "— твой N",
     },
   ],

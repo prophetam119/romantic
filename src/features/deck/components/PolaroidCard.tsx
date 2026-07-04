@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { publicAsset } from "../../../shared/utils/publicAsset";
 import { DeckCard } from "../../../shared/types/content";
 import "./PolaroidCard.css";
 
@@ -8,8 +8,8 @@ interface PolaroidCardProps {
 }
 
 export function PolaroidCard({ card, variant = "default" }: PolaroidCardProps) {
-  const [imgError, setImgError] = useState(false);
-  const showImage = Boolean(card.image) && !imgError;
+  const imageSrc = card.image ? publicAsset(card.image) : null;
+  const showImage = Boolean(imageSrc);
 
   return (
     <div
@@ -18,14 +18,16 @@ export function PolaroidCard({ card, variant = "default" }: PolaroidCardProps) {
       <div className="polaroid__frame">
         <div className="polaroid__shine" aria-hidden="true" />
 
-        {showImage ? (
+        {showImage && imageSrc ? (
           <div className="polaroid__photo-wrap">
             <img
-              src={card.image}
+              key={imageSrc}
+              src={imageSrc}
               alt=""
               className="polaroid__photo"
               draggable={false}
-              onError={() => setImgError(true)}
+              loading="eager"
+              decoding="async"
             />
           </div>
         ) : (
