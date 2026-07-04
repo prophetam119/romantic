@@ -21,6 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# duplicate photos folder in project root (use public/photos/)
-/photos/
