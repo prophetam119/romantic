@@ -6,7 +6,7 @@ import { SiteContent } from "../types/content";
  * Новая карточка:
  * {
  *   id: "5",
- *   image: "/images/photo-5.jpg",
+ *   image: "/photos/3.jpg",   // файл в public/photos/
  *   caption: "Главная фраза на открытке",
  *   note: "Мелкий текст снизу — необязательно",
  * },
@@ -37,47 +37,47 @@ export const CONTENT: SiteContent = {
     },
     {
       id: "1",
-      image: "/photos/брест 1 раз.jpg",
+      image: "/photos/1.jpg",
       caption: "Помню этот день. Я тогда очень сильно испугался",
       note: "Понял, какая ты заводная",
     },
     {
       id: "2",
-      image: "/photos/брест 2 раз.jpg",
+      image: "/photos/2.jpg",
       caption: "Тут мне снова вообще было не смешно, Брест тебя странно встречал",
       note: "Я ещё тогда не знал, что иногда нужно стричься",
     },
     {
       id: "3",
-      image: "/photos/поездка в гомель пиррон.jpg",
+      image: "/photos/3.jpg",
       caption: "Помню, как мне было с тобой хорошо, когда я приезжал.",
       note: "Но и одновременно неловко!!!",
     },
     {
       id: "4",
-      image: "/photos/с милым рай и в шалаше.jpg",
+      image: "/photos/4.jpg",
       caption: "А потом мы наконец-то съехались и стали жить вместе",
       note: "Фон как будто мы нищие хахахахаха(с милым рай и в шалаше)",
     },
     {
       id: "45",
-      image: "/photos/чисто.jpg",
+      image: "/photos/5.jpg",
       caption: "Гуляли в чисто в рубашках, крутые",
       note: "Я тут при бабках 😎",
     },
     {
       id: "5",
-      image: "/photos/перекошенный в гомеле9.jpg",
+      image: "/photos/6.jpg",
       caption: "Однако ты была со мной даже тогда, когда я был перекошенный и толстый",
     },
     {
       id: "6",
-      image: "/photos/осень.jpg",
+      image: "/photos/7.jpg",
       caption: "А здесь я уже пошёл в армию, очень грустно, но с тобой спокойно",
     },
     {
       id: "7",
-      image: "/photos/поцелуй.jpg",
+      image: "/photos/8.jpg",
       caption: "Смотри как мы вкусно целуемся",
       note: "Ничего вкуснее в жизни не пробовал",
     },
